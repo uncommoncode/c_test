@@ -30,27 +30,27 @@ construction and destruction logic. The same fixture can be used across multiple
 #include <c_test/c_test.h>
 
 typedef struct {
-	int *values;
+    int *values;
 } integer_test_t;
 
 void* integer_test_setup() {
-	integer_test_t *test_data = (integer_test_t*)malloc(sizeof(int));
-	test_data->values = (int*)malloc(sizeof(int) * 100);
+    integer_test_t *test_data = (integer_test_t*)malloc(sizeof(int));
+    test_data->values = (int*)malloc(sizeof(int) * 100);
     for (int i = 0; i < 100; i++) {
         test_data->values[i] = i;
     }
-	return test_data;
+    return test_data;
 }
 
 void integer_test_teardown(void *data) {
-	integer_test_t *test_data = (integer_test_t*)data;
-	free(test_data->values);
+    integer_test_t *test_data = (integer_test_t*)data;
+    free(test_data->values);
     free(test_data);
 }
 
 c_test_fixture_t IntegerTest = {
-	.setup = integer_test_setup,
-	.teardown = integer_test_teardown,
+    .setup = integer_test_setup,
+    .teardown = integer_test_teardown,
 };
 
 TEST_F(IntegerTest, ShiftEqualsDivide) {
