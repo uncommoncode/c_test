@@ -34,7 +34,7 @@ typedef struct {
 } integer_test_t;
 
 void* integer_test_setup() {
-    integer_test_t *test_data = (integer_test_t*)malloc(sizeof(int));
+    integer_test_t *test_data = (integer_test_t*)malloc(sizeof(integer_test_t));
     test_data->values = (int*)malloc(sizeof(int) * 100);
     for (int i = 0; i < 100; i++) {
         test_data->values[i] = i;
