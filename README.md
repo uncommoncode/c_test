@@ -95,7 +95,7 @@ However, this printf style reporter may not play nicely with embedded devices. I
 * Why not export JSON or XML?
   * I want to keep things simple here and instead expose the runner_t interface allowing users to customize their 
     output. However I would welcome additions here!
-*  Why force a format string?
+* Why force a format string?
   * This was tough, but it's generally a good practice in unit tests to document the failure cases. In the worst 
     case you can just write `ASSERT_TRUE(<expression>, "");` This seems ideal versus other options like function 
     chaining where it's not clear where the chain ends. For example, having code like 
@@ -107,7 +107,7 @@ However, this printf style reporter may not play nicely with embedded devices. I
   support test suites.
   * This is correct. I'd be happy to accept MR with these additions but required additional complexity 
     to support and aren't required for my common usecases.
-*  This is a lot of macro code. Did you generate it all by hand?
+* This is a lot of macro code. Did you generate it all by hand?
   * No. I generated it with python.
 * Why did you internally use `__runner` and not `runner__`?
   * I didn't want to pollute any autocomplete for an argument that typically should not be used.
