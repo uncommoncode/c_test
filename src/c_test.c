@@ -165,7 +165,9 @@ void print_begin_test(c_test_runner_t* runner) {
 }
 
 void print_end_test(c_test_runner_t* runner, int test_success) {
+#ifdef C_TEST_USE_PRINTF_TIMER
 	const uint64_t test_end_ms = get_current_ms();
+#endif
 	print_data_t *print_data = runner->data;
 	if (test_success) {
 		printf(CONSOLE_COLOR_GREEN "[       OK ] " CONSOLE_COLOR_RESET);
@@ -178,9 +180,8 @@ void print_end_test(c_test_runner_t* runner, int test_success) {
 				 runner->current_test->test_name);
 		c_test_vector_push_back(&print_data->failed_test_names, &failed_test_name);
 	}
-	uint64_t duration_ms = test_end_ms - print_data->test_start_ms;
-
 #ifdef C_TEST_USE_PRINTF_TIMER
+	uint64_t duration_ms = test_end_ms - print_data->test_start_ms;
 	printf("%s.%s (%llu ms)\n", runner->current_test->name_space, runner->current_test->test_name, duration_ms);
 #else
 	printf("%s.%s (? ms)\n", runner->current_test->name_space, runner->current_test->test_name);
